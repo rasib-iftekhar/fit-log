@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Check, ChevronDown, Clock3, Flame, Star, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useWorkoutContext, type WorkoutEntry } from "@/context/WorkoutContext";
@@ -65,6 +65,11 @@ export default function MyPlanPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">("duration");
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
   const isSaved = activeTab === "saved";
   const workouts = isSaved ? savedWorkouts : todaysWorkoutPlan;
   const filteredWorkouts = useMemo(() => {
@@ -118,7 +123,11 @@ export default function MyPlanPage() {
           </label>
         </div>
 
-        {filteredWorkouts.length === 0 ? (
+        {isLoading ? (
+          <div className="mt-10 rounded-2xl border border-gray-800/80 bg-[#1a1c22] px-6 py-12 text-center text-sm text-gray-300">
+            Loading workouts…
+          </div>
+        ) : filteredWorkouts.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-gray-800/80 bg-[#1a1c22] px-6 py-12 text-center">
             <h2 className="font-oswald text-xl uppercase text-white">Nothing Here Yet</h2>
             <p className="mt-3 text-gray-300">Browse the library and add a lift to get today moving.</p>
