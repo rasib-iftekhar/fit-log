@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useContext, useState } from 'react';
-import { Dumbbell, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { WorkoutContext } from '@/context/WorkoutContext';
 import { ROUTES } from '@/lib/routes';
 
@@ -28,9 +29,16 @@ export const Navbar = () => {
         {/* Logo */}
         <div className="flex min-w-[180px] items-center justify-start">
           <Link href={ROUTES.home} className="flex items-center gap-2">
-            <Dumbbell className="h-6 w-6 -rotate-45 text-[#a6e22e]" />
-            <span className="font-oswald text-xl font-extrabold uppercase tracking-wider text-[#a6e22e]">
-              <span className="text-white">FIT</span>LOG
+            <Image
+              src="/logo.png"
+              alt=""
+              width={24}
+              height={24}
+              priority
+              className="h-6 w-6 object-contain"
+            />
+            <span className="font-oswald text-xl font-extrabold uppercase tracking-wider text-white">
+              FIT<span className="text-[#a6e22e]">LOG</span>
             </span>
           </Link>
         </div>

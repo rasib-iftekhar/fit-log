@@ -5,7 +5,7 @@ export const Hero = () => {
   return (
     <section className="w-full bg-[#111318] pb-10 pt-6 text-white">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-8 lg:px-10">
-        <div className="flex min-h-[615px] flex-col items-center justify-center gap-8 rounded-[22px] border border-gray-800/80 bg-[#171b20] p-6 sm:p-10 lg:grid lg:grid-cols-2 lg:gap-4 lg:p-12">
+        <div className="flex min-h-[500px] flex-col items-center justify-center gap-8 rounded-[22px] border border-gray-800/80 bg-[#171b20] p-6 sm:min-h-[540px] sm:p-10 lg:grid lg:grid-cols-2 lg:gap-4 lg:p-12">
           <div className="flex w-full max-w-[560px] flex-col justify-center lg:pl-2">
             <span className="mb-6 block text-xs font-bold uppercase tracking-[0.24em] text-[#a6e22e]">
               WORKOUT LIBRARY
