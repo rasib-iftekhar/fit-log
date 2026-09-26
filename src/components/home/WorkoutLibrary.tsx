@@ -61,7 +61,7 @@ export default function WorkoutLibrary() {
 
   return (
     <section id="library" className="w-full scroll-mt-20 bg-[#111318] pb-10 text-white">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-8 lg:px-10">
         <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h2 className="text-4xl font-black uppercase tracking-[-0.06em] text-white">

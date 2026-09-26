@@ -41,7 +41,7 @@ export default async function WorkoutDetailPage({
 
   return (
     <main className="min-h-[70vh] bg-[#111318] px-4 py-10 text-white sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1200px]">
         <Link
           href="/"
           className="mb-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#a6e22e]"

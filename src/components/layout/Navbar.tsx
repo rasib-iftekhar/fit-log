@@ -24,7 +24,7 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#111318] text-white">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
         {/* Logo */}
         <div className="flex min-w-[180px] items-center justify-start">
           <Link href={ROUTES.home} className="flex items-center gap-2">

@@ -4,16 +4,16 @@ import { ArrowDown } from 'lucide-react';
 export const Hero = () => {
   return (
     <section className="w-full bg-[#111318] pb-10 pt-6 text-white">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-10">
-        <div className="flex min-h-[620px] flex-col items-center justify-center gap-8 rounded-[28px] border border-gray-800/80 bg-[#171b20] p-6 sm:p-10 lg:flex-row lg:justify-between lg:p-10">
-          <div className="flex w-full max-w-[560px] flex-col justify-center lg:pl-6">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-8 lg:px-10">
+        <div className="flex min-h-[615px] flex-col items-center justify-center gap-8 rounded-[22px] border border-gray-800/80 bg-[#171b20] p-6 sm:p-10 lg:grid lg:grid-cols-2 lg:gap-4 lg:p-12">
+          <div className="flex w-full max-w-[560px] flex-col justify-center lg:pl-2">
             <span className="mb-6 block text-xs font-bold uppercase tracking-[0.24em] text-[#a6e22e]">
               WORKOUT LIBRARY
             </span>
 
-            <h1 className="max-w-[520px] text-4xl font-black uppercase leading-[0.94] tracking-[-0.06em] text-white sm:text-5xl lg:text-[4.2rem]">
-              TRAIN WITH INTENT.
-              <span className="block">LOG EVERY SET.</span>
+            <h1 className="font-oswald text-2xl font-bold uppercase leading-[0.95] tracking-wide text-white sm:text-4xl lg:text-[3.15rem]">
+              <span className="block whitespace-nowrap">TRAIN WITH INTENT.</span>
+              <span className="block whitespace-nowrap">LOG EVERY SET.</span>
             </h1>
 
             <p className="mt-6 max-w-[520px] text-base leading-relaxed text-gray-400 sm:text-lg">
@@ -32,8 +32,8 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="flex w-full max-w-[620px] items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-[560px]">
+          <div className="flex w-full items-center justify-center lg:justify-end">
+            <div className="relative w-full max-w-[420px]">
               <Image
                 src="/hero-machine.png"
                 alt="FitLog Workout Companion"
