@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { ArrowDown } from 'lucide-react';
-import { ROUTES } from '@/lib/routes';
 
 export const Hero = () => {
   return (
@@ -24,7 +23,7 @@ export const Hero = () => {
 
             <div className="mt-8">
               <a
-                href={ROUTES.library}
+                href="#library"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#a6e22e] px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-black transition hover:bg-[#b9f129]"
               >
                 Browse Workouts

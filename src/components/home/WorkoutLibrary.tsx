@@ -8,8 +8,6 @@ import { getWorkouts, type Workout } from "@/lib/api";
 
 type SortOption = "duration" | "calories" | "rating";
 
-const formatBadge = (value: string) => value.trim().toUpperCase();
-
 export default function WorkoutLibrary() {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("duration");
@@ -62,7 +60,7 @@ export default function WorkoutLibrary() {
   }, [searchQuery, sortBy, workouts]);
 
   return (
-    <section className="w-full bg-[#111318] pb-10 text-white">
+    <section id="library" className="w-full scroll-mt-20 bg-[#111318] pb-10 text-white">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-10">
         <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>

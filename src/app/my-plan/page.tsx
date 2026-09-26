@@ -122,7 +122,7 @@ export default function MyPlanPage() {
           <div className="mt-10 rounded-2xl border border-gray-800/80 bg-[#1a1c22] px-6 py-12 text-center">
             <h2 className="font-oswald text-xl uppercase text-white">Nothing Here Yet</h2>
             <p className="mt-3 text-gray-300">Browse the library and add a lift to get today moving.</p>
-            <Link href="/" className="mt-7 inline-flex rounded-xl bg-[#b8f200] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#c8ff31]">Go to workouts</Link>
+            <Link href="/#library" className="mt-7 inline-flex rounded-xl bg-[#b8f200] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#c8ff31]">Go to workouts</Link>
           </div>
         ) : (
           <div className="mt-8 grid gap-5">

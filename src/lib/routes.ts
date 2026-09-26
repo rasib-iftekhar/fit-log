@@ -5,7 +5,4 @@ export const ROUTES = {
   library: "/",
   myPlan: "/my-plan",
   workout: (id: number | string) => `/workout/${id}`,
-  HOME: "/",
-  MY_PLAN: "/my-plan",
-  WORKOUT: (id: number | string) => `/workout/${id}`,
 } as const;
