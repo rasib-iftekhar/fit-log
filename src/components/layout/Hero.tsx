@@ -36,7 +36,7 @@ export const Hero = () => {
           <div className="flex w-full max-w-[620px] items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-[560px]">
               <Image
-                src="/banner.png"
+                src="/hero-machine.png"
                 alt="FitLog Workout Companion"
                 priority
                 width={700}

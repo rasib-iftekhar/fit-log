@@ -17,23 +17,23 @@ export interface Workout {
 }
 
 export async function getWorkouts(): Promise<Workout[]> {
-  const response = await fetch(API_URL);
+  const response = await fetch(API_URL, { cache: "no-store" });
 
   if (!response.ok) {
     throw new Error("Failed to fetch workouts");
   }
 
-  return response.json();
+  const data = await response.json();
+  return Array.isArray(data) ? data : data?.value ?? [];
 }
 
-export async function getWorkout(
-  id: string
-): Promise<Workout> {
-  const response = await fetch(`${API_URL}/${id}`);
+export async function getWorkout(id: string): Promise<Workout> {
+  const response = await fetch(`${API_URL}/${id}`, { cache: "no-store" });
 
   if (!response.ok) {
     throw new Error("Workout not found");
   }
 
-  return response.json();
+  const data = await response.json();
+  return data?.value ?? data;
 }

@@ -8,44 +8,55 @@ import {
   type ReactNode,
 } from "react";
 
-type Workout = {
-  id: string;
+export type WorkoutEntry = {
+  id: number | string;
   name: string;
+  image?: string;
+  equipment?: string;
+  difficulty?: string;
+  duration?: number;
+  caloriesBurned?: number;
+  rating?: number;
+  muscleGroups?: string[];
+  description?: string;
+  instructions?: string[];
 };
 
 type WorkoutContextType = {
-  workouts: Workout[];
-  todaysWorkoutPlan: Workout[];
-  savedWorkouts: Workout[];
-  addWorkout: (name: string) => void;
+  todaysWorkoutPlan: WorkoutEntry[];
+  savedWorkouts: WorkoutEntry[];
+  addToTodaysPlan: (workout: WorkoutEntry) => void;
+  saveForLater: (workout: WorkoutEntry) => void;
 };
 
 export const WorkoutContext = createContext<WorkoutContextType | undefined>(undefined);
 
 export default function WorkoutContextProvider({ children }: { children: ReactNode }) {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
-  const [todaysWorkoutPlan] = useState<Workout[]>([]);
-  const [savedWorkouts] = useState<Workout[]>([]);
+  const [todaysWorkoutPlan, setTodaysWorkoutPlan] = useState<WorkoutEntry[]>([]);
+  const [savedWorkouts, setSavedWorkouts] = useState<WorkoutEntry[]>([]);
 
-  const addWorkout = (name: string) => {
-    if (!name.trim()) return;
+  const addToTodaysPlan = (workout: WorkoutEntry) => {
+    setTodaysWorkoutPlan((current) => {
+      const exists = current.some((item) => String(item.id) === String(workout.id));
+      return exists ? current : [...current, workout];
+    });
+  };
 
-    const nextWorkout = {
-      id: `${Date.now()}-${Math.random()}`,
-      name: name.trim(),
-    };
-
-    setWorkouts((current) => [...current, nextWorkout]);
+  const saveForLater = (workout: WorkoutEntry) => {
+    setSavedWorkouts((current) => {
+      const exists = current.some((item) => String(item.id) === String(workout.id));
+      return exists ? current : [...current, workout];
+    });
   };
 
   const value = useMemo<WorkoutContextType>(
     () => ({
-      workouts,
       todaysWorkoutPlan,
       savedWorkouts,
-      addWorkout,
+      addToTodaysPlan,
+      saveForLater,
     }),
-    [workouts, todaysWorkoutPlan, savedWorkouts],
+    [todaysWorkoutPlan, savedWorkouts],
   );
 
   return <WorkoutContext.Provider value={value}>{children}</WorkoutContext.Provider>;

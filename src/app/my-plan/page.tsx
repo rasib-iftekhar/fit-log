@@ -1,15 +1,25 @@
+"use client";
+
+import Link from "next/link";
+import { useWorkoutContext } from "@/context/WorkoutContext";
+
 export default function MyPlanPage() {
-  return (
-    <main className="flex min-h-[60vh] items-center justify-center bg-[#111318] px-6 py-12 text-white">
-      <div className="w-full max-w-xl rounded-2xl border border-white/10 bg-[#181a20] p-8 text-center shadow-lg">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#a6e22e]">
-          My plan
-        </p>
-        <h1 className="mt-4 text-3xl font-black tracking-tight">Your training plan</h1>
-        <p className="mt-3 text-sm text-gray-300">
-          This page is ready for your custom training plan content.
-        </p>
-      </div>
-    </main>
-  );
+	const { todaysWorkoutPlan, savedWorkouts } = useWorkoutContext();
+
+	return (
+		<main className="min-h-[70vh] bg-[#111318] px-4 py-10 text-white sm:px-8 lg:px-10">
+			<div className="mx-auto max-w-4xl">
+				<h1 className="text-4xl font-black uppercase tracking-tight">My Plan</h1>
+				<p className="mt-3 text-gray-300">
+					{todaysWorkoutPlan.length} planned workout(s) and {savedWorkouts.length} saved workout(s).
+				</p>
+				<Link
+					href="/"
+					className="mt-6 inline-flex rounded-xl bg-[#a6e22e] px-5 py-3 text-sm font-bold uppercase tracking-wide text-black"
+				>
+					Browse workouts
+				</Link>
+			</div>
+		</main>
+	);
 }

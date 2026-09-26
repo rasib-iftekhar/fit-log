@@ -36,7 +36,7 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="relative hidden min-w-[260px] items-center justify-center rounded-full border border-gray-800 bg-[#1a1d24] p-1 md:flex">
+        <nav className="relative hidden min-w-[260px] items-center justify-center p-1 md:flex">
           <span
             aria-hidden="true"
             className={`absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-[#22281b] transition-transform duration-300 ease-out ${
