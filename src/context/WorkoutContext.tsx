@@ -3,7 +3,9 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -25,8 +27,10 @@ export type WorkoutEntry = {
 type WorkoutContextType = {
   todaysWorkoutPlan: WorkoutEntry[];
   savedWorkouts: WorkoutEntry[];
-  addToTodaysPlan: (workout: WorkoutEntry) => void;
-  saveForLater: (workout: WorkoutEntry) => void;
+  addToTodaysPlan: (workout: WorkoutEntry) => boolean;
+  saveForLater: (workout: WorkoutEntry) => boolean;
+  removeFromTodaysPlan: (workoutId: number | string) => void;
+  removeFromSaved: (workoutId: number | string) => void;
 };
 
 export const WorkoutContext = createContext<WorkoutContextType | undefined>(undefined);
@@ -34,19 +38,54 @@ export const WorkoutContext = createContext<WorkoutContextType | undefined>(unde
 export default function WorkoutContextProvider({ children }: { children: ReactNode }) {
   const [todaysWorkoutPlan, setTodaysWorkoutPlan] = useState<WorkoutEntry[]>([]);
   const [savedWorkouts, setSavedWorkouts] = useState<WorkoutEntry[]>([]);
+  const hasHydrated = useRef(false);
+
+  useEffect(() => {
+    try {
+      const storedPlan = window.localStorage.getItem("fitlog-plan");
+      const storedSaved = window.localStorage.getItem("fitlog-saved");
+      if (storedPlan) setTodaysWorkoutPlan(JSON.parse(storedPlan));
+      if (storedSaved) setSavedWorkouts(JSON.parse(storedSaved));
+    } catch {
+      window.localStorage.removeItem("fitlog-plan");
+      window.localStorage.removeItem("fitlog-saved");
+    } finally {
+      hasHydrated.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hasHydrated.current) return;
+    window.localStorage.setItem("fitlog-plan", JSON.stringify(todaysWorkoutPlan));
+    window.localStorage.setItem("fitlog-saved", JSON.stringify(savedWorkouts));
+  }, [todaysWorkoutPlan, savedWorkouts]);
 
   const addToTodaysPlan = (workout: WorkoutEntry) => {
-    setTodaysWorkoutPlan((current) => {
-      const exists = current.some((item) => String(item.id) === String(workout.id));
-      return exists ? current : [...current, workout];
-    });
+    const exists = todaysWorkoutPlan.some((item) => String(item.id) === String(workout.id));
+    if (exists || todaysWorkoutPlan.length >= 5) return false;
+
+    setTodaysWorkoutPlan((current) => [...current, workout]);
+    return true;
   };
 
   const saveForLater = (workout: WorkoutEntry) => {
-    setSavedWorkouts((current) => {
-      const exists = current.some((item) => String(item.id) === String(workout.id));
-      return exists ? current : [...current, workout];
-    });
+    const exists = savedWorkouts.some((item) => String(item.id) === String(workout.id));
+    if (exists) return false;
+
+    setSavedWorkouts((current) => [...current, workout]);
+    return true;
+  };
+
+  const removeFromTodaysPlan = (workoutId: number | string) => {
+    setTodaysWorkoutPlan((current) =>
+      current.filter((workout) => String(workout.id) !== String(workoutId)),
+    );
+  };
+
+  const removeFromSaved = (workoutId: number | string) => {
+    setSavedWorkouts((current) =>
+      current.filter((workout) => String(workout.id) !== String(workoutId)),
+    );
   };
 
   const value = useMemo<WorkoutContextType>(
@@ -55,6 +94,8 @@ export default function WorkoutContextProvider({ children }: { children: ReactNo
       savedWorkouts,
       addToTodaysPlan,
       saveForLater,
+      removeFromTodaysPlan,
+      removeFromSaved,
     }),
     [todaysWorkoutPlan, savedWorkouts],
   );

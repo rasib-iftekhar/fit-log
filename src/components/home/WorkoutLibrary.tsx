@@ -13,6 +13,7 @@ const formatBadge = (value: string) => value.trim().toUpperCase();
 export default function WorkoutLibrary() {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("duration");
+  const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +40,11 @@ export default function WorkoutLibrary() {
   }, []);
 
   const sortedWorkouts = useMemo(() => {
-    const next = [...workouts];
+    const query = searchQuery.trim().toLowerCase();
+    const next = workouts.filter((workout) =>
+      [workout.name, workout.equipment, ...workout.muscleGroups]
+        .some((value) => value.toLowerCase().includes(query)),
+    );
 
     next.sort((a, b) => {
       switch (sortBy) {
@@ -54,12 +59,12 @@ export default function WorkoutLibrary() {
     });
 
     return next;
-  }, [sortBy, workouts]);
+  }, [searchQuery, sortBy, workouts]);
 
   return (
     <section className="w-full bg-[#111318] pb-10 text-white">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-10">
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h2 className="text-4xl font-black uppercase tracking-[-0.06em] text-white">
               THE LIBRARY
@@ -69,21 +74,35 @@ export default function WorkoutLibrary() {
             </p>
           </div>
 
-          <div className="relative w-full max-w-[220px]">
-            <label className="block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">
-              Sort By
+          <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end lg:w-auto">
+            <label className="block w-full sm:w-[250px]">
+              <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">
+                Search
+              </span>
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Name or muscle tag"
+                className="mt-2 w-full rounded-full border border-gray-700 bg-[#1a1d24] px-4 py-2.5 text-sm font-medium text-white outline-none placeholder:text-gray-500 transition focus:border-[#a6e22e]"
+              />
             </label>
-            <div className="relative mt-2">
-              <select
-                value={sortBy}
-                onChange={(event) => setSortBy(event.target.value as SortOption)}
-                className="w-full appearance-none rounded-full border border-gray-700 bg-[#1a1d24] px-4 py-2.5 pr-10 text-sm font-medium text-white outline-none transition focus:border-[#a6e22e]"
-              >
-                <option value="duration">Duration</option>
-                <option value="calories">Calories</option>
-                <option value="rating">Rating</option>
-              </select>
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <div className="relative w-full sm:w-[220px]">
+              <label className="block text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">
+                Sort By
+              </label>
+              <div className="relative mt-2">
+                <select
+                  value={sortBy}
+                  onChange={(event) => setSortBy(event.target.value as SortOption)}
+                  className="w-full appearance-none rounded-full border border-gray-700 bg-[#1a1d24] px-4 py-2.5 pr-10 text-sm font-medium text-white outline-none transition focus:border-[#a6e22e]"
+                >
+                  <option value="duration">Duration</option>
+                  <option value="calories">Calories</option>
+                  <option value="rating">Rating</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              </div>
             </div>
           </div>
         </div>
