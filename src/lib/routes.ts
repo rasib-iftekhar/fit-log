@@ -1,4 +1,4 @@
-export const API_URL = "https://api.abcz.workers.dev/api/fitlog";
+export const API_URL = "https://api.api-store.workers.dev/api/fitlog";
 
 export const ROUTES = {
   home: "/",

@@ -40,18 +40,18 @@ export default async function WorkoutDetailPage({
   };
 
   return (
-    <main className="min-h-[70vh] bg-[#111318] px-4 py-10 text-white sm:px-8 lg:px-10">
+    <main className="min-h-[70vh] bg-[#111318] px-4 py-8 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-[1200px]">
         <Link
           href="/"
-          className="mb-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#a6e22e]"
+          className="mb-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#a6e22e]"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Library
         </Link>
 
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative min-h-[580px] overflow-hidden rounded-[24px] border border-gray-800 bg-[#171b20]">
+        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative min-h-[460px] overflow-hidden rounded-[20px] border border-gray-800 bg-[#171b20] lg:min-h-[520px]">
             <Image
               src={workout.image}
               alt={workout.name}
@@ -61,79 +61,79 @@ export default async function WorkoutDetailPage({
             />
           </div>
 
-          <div className="rounded-[24px] border border-gray-800 bg-[#171b20] p-6 sm:p-8 lg:p-10">
-            <h1 className="text-4xl font-black uppercase tracking-[-0.06em] text-white">
+          <div className="rounded-[20px] border border-gray-800 bg-[#171b20] p-5 sm:p-6 lg:p-7">
+            <h1 className="text-3xl font-black uppercase tracking-[-0.04em] text-white sm:text-[2.1rem]">
               {workout.name}
             </h1>
 
-            <p className="mt-4 text-base leading-relaxed text-gray-300">
+            <p className="mt-3 text-sm leading-relaxed text-gray-300 sm:text-[15px]">
               {workout.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-1.5">
               {workout.muscleGroups.map((group: string) => (
                 <span
                   key={group}
-                  className="rounded-full bg-[#b7f240] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-black"
+                  className="rounded-full bg-[#b7f240] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-black"
                 >
                   {group}
                 </span>
               ))}
             </div>
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-gray-800 bg-[#111318]">
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Equipment</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+            <div className="mt-4 overflow-hidden rounded-xl border border-gray-800 bg-[#111318]">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Equipment</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.equipment}
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Difficulty</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Difficulty</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.difficulty}
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Sets</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Sets</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.sets}
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Reps</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Reps</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.reps}
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Duration</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Duration</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.duration} min
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] border-b border-gray-800 text-sm last:border-b-0">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Calories</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] border-b border-gray-800 text-xs last:border-b-0 sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Calories</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.caloriesBurned} kcal
                 </div>
               </div>
-              <div className="grid grid-cols-[140px_1fr] text-sm">
-                <div className="px-4 py-3 font-bold uppercase tracking-[0.18em] text-gray-500">Rating</div>
-                <div className="border-l border-gray-800 px-4 py-3 text-right font-semibold text-white sm:text-left">
+              <div className="grid grid-cols-[115px_1fr] text-xs sm:grid-cols-[125px_1fr]">
+                <div className="px-3 py-2.5 font-bold uppercase tracking-[0.14em] text-gray-500">Rating</div>
+                <div className="border-l border-gray-800 px-3 py-2.5 text-right font-semibold text-white sm:text-left">
                   {workout.rating.toFixed(1)}
                 </div>
               </div>
             </div>
 
-            <div className="mt-8">
-              <h2 className="mb-4 text-2xl font-black uppercase tracking-[0.12em] text-white">
+            <div className="mt-6">
+              <h2 className="mb-3 text-xl font-black uppercase tracking-[0.1em] text-white">
                 Instructions
               </h2>
-              <ol className="space-y-3 text-base leading-relaxed text-gray-300">
+                <ol className="space-y-2 text-sm leading-relaxed text-gray-300">
                 {workout.instructions.map((step: string, index: number) => (
                   <li key={step} className="flex gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#a6e22e] text-xs font-black text-black">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#a6e22e] text-[10px] font-black text-black">
                       {index + 1}
                     </span>
                     <span>{step}</span>
