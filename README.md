@@ -21,23 +21,9 @@ FitLog is a dark, focused workout library for discovering exercises, reviewing d
 - Add, save, remove, complete, toast notifications, and localStorage persistence
 - Custom 404 page and responsive layouts for mobile, tablet, and desktop
 
-## Getting Started
+## Live Link
 
-Install dependencies and start the development server:
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:3000 in your browser.
-
-## Production Check
-
-```bash
-npm run build
-npm run start
-```
+https://fit-log-six-smoky.vercel.app/
 
 ## Routes
 
